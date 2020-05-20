@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[simplified.io]]></title><description><![CDATA[simplified.io]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 20 May 2020 19:52:52 GMT</lastBuildDate><item><title><![CDATA[Deploy Azure web job on Docker]]></title><description><![CDATA[What is WebJobs SDK? The Azure WebJobs SDK is a framework that simplifies the task of writing background processing code that runs in Azure…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/azure-web-job-on-docker/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/azure-web-job-on-docker/</guid><pubDate>Fri, 16 Aug 2019 23:46:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[simplified.io]]></title><description><![CDATA[simplified.io]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 20 May 2020 19:56:22 GMT</lastBuildDate><item><title><![CDATA[Deploy Azure web job on Docker]]></title><description><![CDATA[What is WebJobs SDK? The Azure WebJobs SDK is a framework that simplifies the task of writing background processing code that runs in Azure…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/azure-web-job-on-docker/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/azure-web-job-on-docker/</guid><pubDate>Fri, 16 Aug 2019 23:46:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/KoditkarVedant.github.io/static/90eec5339e9d09d221a320590c211d77/c1b63/docker_dotnet.png&quot;
+    href=&quot;/static/90eec5339e9d09d221a320590c211d77/c1b63/docker_dotnet.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -17,13 +17,13 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Chinese Salty Egg&quot;
         title=&quot;Chinese Salty Egg&quot;
-        src=&quot;/KoditkarVedant.github.io/static/90eec5339e9d09d221a320590c211d77/fcda8/docker_dotnet.png&quot;
-        srcset=&quot;/KoditkarVedant.github.io/static/90eec5339e9d09d221a320590c211d77/12f09/docker_dotnet.png 148w,
-/KoditkarVedant.github.io/static/90eec5339e9d09d221a320590c211d77/e4a3f/docker_dotnet.png 295w,
-/KoditkarVedant.github.io/static/90eec5339e9d09d221a320590c211d77/fcda8/docker_dotnet.png 590w,
-/KoditkarVedant.github.io/static/90eec5339e9d09d221a320590c211d77/efc66/docker_dotnet.png 885w,
-/KoditkarVedant.github.io/static/90eec5339e9d09d221a320590c211d77/c83ae/docker_dotnet.png 1180w,
-/KoditkarVedant.github.io/static/90eec5339e9d09d221a320590c211d77/c1b63/docker_dotnet.png 1200w&quot;
+        src=&quot;/static/90eec5339e9d09d221a320590c211d77/fcda8/docker_dotnet.png&quot;
+        srcset=&quot;/static/90eec5339e9d09d221a320590c211d77/12f09/docker_dotnet.png 148w,
+/static/90eec5339e9d09d221a320590c211d77/e4a3f/docker_dotnet.png 295w,
+/static/90eec5339e9d09d221a320590c211d77/fcda8/docker_dotnet.png 590w,
+/static/90eec5339e9d09d221a320590c211d77/efc66/docker_dotnet.png 885w,
+/static/90eec5339e9d09d221a320590c211d77/c83ae/docker_dotnet.png 1180w,
+/static/90eec5339e9d09d221a320590c211d77/c1b63/docker_dotnet.png 1200w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
