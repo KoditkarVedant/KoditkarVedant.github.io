@@ -1,4 +1,279 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[simplified.io]]></title><description><![CDATA[simplified.io]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 20 May 2020 20:00:09 GMT</lastBuildDate><item><title><![CDATA[Deploy Azure web job on Docker]]></title><description><![CDATA[What is WebJobs SDK? The Azure WebJobs SDK is a framework that simplifies the task of writing background processing code that runs in Azure…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/azure-web-job-on-docker/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/azure-web-job-on-docker/</guid><pubDate>Fri, 16 Aug 2019 23:46:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[simplified.io]]></title><description><![CDATA[simplified.io]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 25 May 2020 17:25:20 GMT</lastBuildDate><item><title><![CDATA[Connect to Local Sql Server from Docker container]]></title><description><![CDATA[In this post, I will show you how to connect from an app running in a docker container to a local SQL express/server running in your machine…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/connect-to-local-sql-server-from-docker-container/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/connect-to-local-sql-server-from-docker-container/</guid><pubDate>Mon, 25 May 2020 23:46:37 GMT</pubDate><content:encoded>&lt;p&gt;In this post, I will show you how to connect from an app running in a docker container to a local SQL express/server running in your machine.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Please note that the SQL Server is not running inside a docker container but it is installed on my dev machine.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Recently, I was considering using the docker for my day to day development. So I can deploy all the services which are required in docker and keep them up all the time and only redeploy the changed services.&lt;/p&gt;
+&lt;p&gt;Deploying other app services is easy but things go complicated with the database. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Well not to mention that I could deploy a database in a docker container and use it instead but then I will be running one instance on my local machine and another on the container.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;What is the problem?&lt;/h2&gt;
+&lt;p&gt;The docker container is running as a separate machine inside your host machine. Hence the Data Source=(local) or named server is not the same when the app runs inside the docker.&lt;/p&gt;
+&lt;h2&gt;Solution&lt;/h2&gt;
+&lt;p&gt;To solve this problem, we need to enable the TCP/IP protocol over the network for SQL Server to be able to access over the network so docker can connect to it.&lt;/p&gt;
+&lt;h3&gt;How to Enable TCP/IP protocol over a network&lt;/h3&gt;
+&lt;p&gt;To enable TCP/IP protocol you need to open the SQL Server manager tool.&lt;/p&gt;
+&lt;h4&gt;Before Widows 8&lt;/h4&gt;
+&lt;p&gt;  Search in Windows start for “SQL Server Configuration Manager”&lt;/p&gt;
+&lt;p&gt;  &lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 246px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/128debcbba48c07c7be2217edfcdef84/92252/SqlServerConfigurationManager.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 83.1081081081081%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAIAAABSJhvpAAAACXBIWXMAAAsSAAALEgHS3X78AAACwklEQVQ4y4VSXU/TUBguQ4E7kYUpMfFODSYk3vg7TLwx/gtj8IN/YEz8iJljk0TjjVcy8EZUIkaG8jWzwLYONsa27qvfPT2nXbe2a33XAlmMxidPTp5z2ve8T5+31PmJiaGh4Wg06rquYRgdD7Zt67rebrcty/JPQMDW9ND2AIK6eGEiFByNvAxzHKcRghDieR4uSqVShBAQjuO4fdA0rdFoEIxbrRZ19tJ1avzK7Jt38MCybf9tAFwM/UF0PfQLcGF3u5ZlUmO3no7cePQ8vqHwtXKFKRQK0Pzkir/Ct9C1Lerc7Wdnbj5+sbgFe6zpYMb2+vfjD+dHxd0uNQq2Q5Ox129dfr4pMBzPNwEsWy6XaZoGyTBMvV6vVqtwUqlUYOtnAdapqcnL16auhsNPOOZbuVQSJQmc1+p1MO9nezICyB805OxbMy2bGg+FBk+djsZe9S4zTYwxy7KSJCmKAsbcf8OEzsFgcGBgIBaL9YotC16Hay3H6UCwrvv/4sBgIBqJiMXDOk3DHB2kuir2qDqQPEKOgkAc0dOugkyiU8GxscDwcOTBjJvOyNtJYyfdSWfb6QywBTqTNXZ7q3/ia6Cd22ut/vCKR0bCd+66tRrDsfulkkRwQxIFrNYEgUcIDhmWrTSbHFJqAg8s1qoGfNev1HHn6fuuIEBIGkKaiomq6hjrhPRWjFVZBiJZ1jA2dJ1Alo5jnBTPTt8rZdKryeTP7a3E5uZ6Mvk1kVhZW1tJAFd3c7lcsZjJ7x9WqyLGRYbRTLOv88MZ9GU5F184WPywH1/Ym48DQeTez8PKLH2qf16ufFzC6xtulnaAkMj3xNGo5ubmdEku0TSTzxfS6WI2W6JzB5lMfmdXaTZ1SdJEkQgC4fmWJKscZ2HVane8UQUC/pzhr4Q/DKmqKEsyUkCo8MGE4GPyEKEIMz0kmuba9m9HwE1wVRrStgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Sql Server Configuration Manager.png&quot;
+        title=&quot;Sql Server Configuration Manager.png&quot;
+        src=&quot;/static/128debcbba48c07c7be2217edfcdef84/92252/SqlServerConfigurationManager.png&quot;
+        srcset=&quot;/static/128debcbba48c07c7be2217edfcdef84/12f09/SqlServerConfigurationManager.png 148w,
+/static/128debcbba48c07c7be2217edfcdef84/92252/SqlServerConfigurationManager.png 246w&quot;
+        sizes=&quot;(max-width: 246px) 100vw, 246px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;Windows 8, 10 &amp;#x26; newer&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;The newer Microsoft SQL Server Configuration Manager is a snap-in for the Microsoft Management Console Program.&lt;/li&gt;
+&lt;li&gt;It is not a stand-alone program as it used to be in the previous versions of Windows.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Version&lt;/th&gt;
+&lt;th&gt;Search&lt;/th&gt;
+&lt;th&gt;Path&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;SQL Server 2019&lt;/td&gt;
+&lt;td&gt;SQLServerManager15.msc&lt;/td&gt;
+&lt;td&gt;C:\Windows\SysWOW64\SQLServerManager15.msc&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SQL Server 2017&lt;/td&gt;
+&lt;td&gt;SQLServerManager14.msc&lt;/td&gt;
+&lt;td&gt;C:\Windows\SysWOW64\SQLServerManager14.msc&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SQL Server 2016&lt;/td&gt;
+&lt;td&gt;SQLServerManager13.msc&lt;/td&gt;
+&lt;td&gt;C:\Windows\SysWOW64\SQLServerManager13.msc&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SQL Server 2014 (12.x)&lt;/td&gt;
+&lt;td&gt;SQLServerManager12.msc&lt;/td&gt;
+&lt;td&gt;C:\Windows\SysWOW64\SQLServerManager12.msc&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SQL Server 2012 (11.x)&lt;/td&gt;
+&lt;td&gt;SQLServerManager11.msc&lt;/td&gt;
+&lt;td&gt;C:\Windows\SysWOW64\SQLServerManager11.msc&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SQL Server 2008&lt;/td&gt;
+&lt;td&gt;SQLServerManager10.msc&lt;/td&gt;
+&lt;td&gt;C:\Windows\SysWOW64\SQLServerManager10.msc&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;  &lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/bf714d18afb86c7a7a5e0174d21244bf/c83ae/SqlServerManager.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABYlAAAWJQFJUiTwAAACI0lEQVQ4y42T227TQBCG/f43veAaeIKiIlW9rhCqhAShLVDSJE4cx4f4uGvHh9Sx/TOz8QaLQ2GlX7ue2fl2ZsdrTL4v8PHrDDPLg7kJsNhsYToh1oGAtU3hRhKHwwFt29LcoqV1Q+s9gEM7fDcH8HBdF8ab82u8vLrF2eUdzt5+Unpx9QWv39t4dePh8j4C+k4FoO/VVIQhzPNztPv90dwd/b7vw7j+8IB3n+e4edjg3k5xt05wu4oxMQNMlhGmrkA3BHScGWVUxhGsiwuUMlPZsp2H41CGjmNjOX+EZc5hr0y4toU48CGSCLssRZHLE7AsS6wtCy5l4gkBh0rkMpumUX4pJQzf38KjDWEUKUVRjDhJkKSpkhA/gf1Q8niwRfurqoIR0H3kea7oWZapWUtQFuzjDIqiUIF1XSOhA7WPbfqginxGEASn4LG0jQ9hIJe7pyYwgLuuO88wDaw1kIM05NcMFfDQoaxq9Yv8VjLBdMnFbqeB8q/AnIBV0yEWOTJlkyrT8Z3quaRr+WeGDCyeCChzhLQ3osa1w2+iy9VA1eX/Ae6p5LyoIKjr3MkxDKMue54/NGUAcjknje5QB4zvbSztdz0PBpfBdyNFShJHSQLJ48wZ9n2HZ8eQqcfAjR8izQokcndSJDKEiVTidfXET65HTaX/SVVDz4+AS5ue3tSmh25tMF2s8O3RxGxpw9nGqrMlgVi8fk4F7eE2TVcufgDVx3oriocGHgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Sql Server Manager.png&quot;
+        title=&quot;Sql Server Manager.png&quot;
+        src=&quot;/static/bf714d18afb86c7a7a5e0174d21244bf/fcda8/SqlServerManager.png&quot;
+        srcset=&quot;/static/bf714d18afb86c7a7a5e0174d21244bf/12f09/SqlServerManager.png 148w,
+/static/bf714d18afb86c7a7a5e0174d21244bf/e4a3f/SqlServerManager.png 295w,
+/static/bf714d18afb86c7a7a5e0174d21244bf/fcda8/SqlServerManager.png 590w,
+/static/bf714d18afb86c7a7a5e0174d21244bf/efc66/SqlServerManager.png 885w,
+/static/bf714d18afb86c7a7a5e0174d21244bf/c83ae/SqlServerManager.png 1180w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Open the &lt;strong&gt;SQL Server Configuration Manager (Local)&lt;/strong&gt; &gt; &lt;strong&gt;SQL Server Network Configuration&lt;/strong&gt; menu and click the &lt;strong&gt;Protocols for MSSQLSERVERXXXX&lt;/strong&gt; (where XXXX is the MSSQL version).&lt;/p&gt;
+&lt;p&gt;  &lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/f5d2f61ef8e66cc531476d1b4cb403d4/7ae9c/sqlserver_manager_network_protocol.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 45.27027027027027%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAABaUlEQVQoz4VS206EQAzl/7/JFxN9MCbqJmswIst1LwOMAwMsLLdjO0F2dWNsaKbTltP2dKyD4yAVAkWhIaU0qpRE0zT4V6aJvgld12EcR1RVBWsnJNJUIJMHiDSBSMhWR5PAOgzDhY5Xfrb7fjDABvDZXiOKPOz3PoI4Qrj18b7ZIssyaK3Rti1125qzqmvj07o0E7CWBMKx06mjyXJY+10Ad+MSoEAcxdRthmNdEQWFqciVR1KWqirheRu4rktNRAbI8zxTiKUsS1giSWHbNiWE8Cl5G8cIggCB7yMKI9T1caGspM5c4jwkP3faE3cfdFdKzQVpZF7C4+oVt09vuHtxcL9ycPOwxurNwzhzNM0dNvNo551Miy6AjJ6kkhaRQ6oCirdNp/zMDenfP7K07Qn9L9+lXdPoFqP+/Sp+dsDL4SfC18sYT7FwmKSp4SOnJRRXqlFQjE/OUXmOPC+MXehzjHN524Le8xcV+bOkSbNAzQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;sql server manager network protocol.png&quot;
+        title=&quot;sql server manager network protocol.png&quot;
+        src=&quot;/static/f5d2f61ef8e66cc531476d1b4cb403d4/fcda8/sqlserver_manager_network_protocol.png&quot;
+        srcset=&quot;/static/f5d2f61ef8e66cc531476d1b4cb403d4/12f09/sqlserver_manager_network_protocol.png 148w,
+/static/f5d2f61ef8e66cc531476d1b4cb403d4/e4a3f/sqlserver_manager_network_protocol.png 295w,
+/static/f5d2f61ef8e66cc531476d1b4cb403d4/fcda8/sqlserver_manager_network_protocol.png 590w,
+/static/f5d2f61ef8e66cc531476d1b4cb403d4/efc66/sqlserver_manager_network_protocol.png 885w,
+/static/f5d2f61ef8e66cc531476d1b4cb403d4/7ae9c/sqlserver_manager_network_protocol.png 972w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;If &lt;code class=&quot;language-text&quot;&gt;TCP/IP&lt;/code&gt; protocol is &lt;code class=&quot;language-text&quot;&gt;Disabled&lt;/code&gt; as shown in the above image then follow the below steps to enable it else skip to step no. 4.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Double-click the &lt;code class=&quot;language-text&quot;&gt;TCP/IP&lt;/code&gt; protocol.&lt;/li&gt;
+&lt;li&gt;Under Protocol tab set &lt;code class=&quot;language-text&quot;&gt;Enabled&lt;/code&gt; property &lt;code class=&quot;language-text&quot;&gt;yes&lt;/code&gt;.
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/8845ffe63d3c716e2e916c930b21f67d/40040/sqlserver_manager_network_protocol_tab.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 122.2972972972973%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAYCAYAAAD6S912AAAACXBIWXMAABYlAAAWJQFJUiTwAAACZElEQVQ4y+2VW28SQRTH+WiaaKPPxvitfDbGqrHPfgTjiyFQCthyqQR22UvZhWX2wt5ouf09ZxYWaGm0+mTiJD/O7pmd//5nhj1TiKIQtm1DuC7soQ3P8/CQNpvN8hjHCQrhZALHceB6voxjIRCGEZIkRTqd5kzvIU3TPPq+j4JLjnRNRegLXFFsXXzHZfMcYmQjnniUdxEFLlxXwBnfZbyOwvUwHA5RGNJ0a20FX2tdlNomWmaAhu6jYWQ0iQu6d/0IN+wmSYh0hwTXlE+iGJZloTANfZycOnj5qY8XH1U8fWfg+QcTz95n8PWTYxOfKyYurRANK0HTim+R4FtDg6bpPOWA1s2HqijQDQPXNzMsV8CCfpbEfLGSi/76i4FHb1QcHev0Ui3niHj8VsOrEw2KZqDg0WbEZF3QZkRxfGAfM0GH1mfiezS9BGkS7zFNY8T0bzFNkwU9crLcDl+tDsKNn1ssFsQmZnB+Pp9jMBhkgpzMB64H33a5OpjfNhbdE/yVu/v6dt0fFHxo+y/4Lwr+CVKQNO4I/k3bc7h5C38+v8PuZ7eBK7YUdKn012pV1Ot1KpZj8L2gYsrF4hDcz89xdd9lNBrJo0Q6LBaLqNZqUKiEdbs99HoKVLVPqDL2+xm6rlN/lwqpTcdEiCAIJBM6Rrj8y4rNF6zMb+WKa5FtruKcs+neXl9zHw/gabEjHsdmNrBzKRgEmXoGFVs6Gxyxhc+cTb9cDiHyKXPcLAOLrgXXtglB1fuHPkTlvEW00e5bMMwrVE5PUTk7k+5arRZKpRLK5TI6nY7MVatVNBpNeQT8BGBvJ8TVwU+MAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;sql server manager network protocol tab.png&quot;
+        title=&quot;sql server manager network protocol tab.png&quot;
+        src=&quot;/static/8845ffe63d3c716e2e916c930b21f67d/fcda8/sqlserver_manager_network_protocol_tab.png&quot;
+        srcset=&quot;/static/8845ffe63d3c716e2e916c930b21f67d/12f09/sqlserver_manager_network_protocol_tab.png 148w,
+/static/8845ffe63d3c716e2e916c930b21f67d/e4a3f/sqlserver_manager_network_protocol_tab.png 295w,
+/static/8845ffe63d3c716e2e916c930b21f67d/fcda8/sqlserver_manager_network_protocol_tab.png 590w,
+/static/8845ffe63d3c716e2e916c930b21f67d/40040/sqlserver_manager_network_protocol_tab.png 616w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Click on Apply&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Go to &lt;code class=&quot;language-text&quot;&gt;IP Addresses&lt;/code&gt; to check on which TCP/IP port SQL Server is listening.
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/a3de3680acc61d1878d0ea6fcae4fb0b/e628c/sqlserver_manager_network_protocol_ip_addresses_tab.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 122.2972972972973%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAYCAYAAAD6S912AAAACXBIWXMAABYlAAAWJQFJUiTwAAADMElEQVQ4y5VVyY7TUBDM78EJceLCT/A7ICEB4sqBf2CkyUAyk0z2zXZiO/G+xHEWu+ju2NmUsESqPPst/bqrutsVXdcxn89h2zZM04TjOPif32azkXG9XmO326EynU7hui48zxNjbDiOY6xWK6Rp+lckSSLjcrmU50qv10Oz2cRoNBZP+X0wGIrh8oI/Y7+ndKrS7w/Q6vSgmxaCaAU/XApcPyZEBWJ4wen7Ho63H3ltOpvBtixUxhMFPk1MaFyla+Ejy3PkNOYHnrZwXO8mj7SdIuuLBmIwII867Tbdop9sygUl4YpC+4LgDBwic8f7Op3OicFoKQeYR5c2BUGILMtR2CP1MuLIg0UhMV9WwR9zzobZYJscEoMTRaXJGJqmQSWEYUg3+9hl2cHLjJ55ji+5HnIuDvEFlR6JMhgpUDQdUbLGekuc7YDVendAku5EGF5P0u0FeE8G3w8kgspE1UQUDjdZpRLmlhKUvSnDTkks23GPHrFwxbqAJjgCq1SZOex2u2eilKGU1cAF4Ps+fOI4LbLhVDheOxgMowQqcTAYDmXSIW+YtzIl+FAURZK8jBVFctPgaKzA80OoqgpdNyQN+HB2IQpfwrV6mVZ7nBjsUkIOxyrUqYkwpvrc5iJMUoixHymxqSLiZLOfuwCLwulmHSslwmh8FIXz7iAKeZNSYnPu5UUVXeLMQw45jBMM+lTPun6ZYfK/JVGcQuXzUG+IwqU3oLR5bndhmHPMFxbl4t7LXYHr3F0xaGgTfHt08ObzGG+/TvDywwgv3g/w6pOG11+mePlRw7vvJoz5gmp6c1QeOGsgXIJisN/v47Gn4kfbQHMWo65FhBg1JRT8JDzPItjUqgJKLxbuEtEypTqeFyGPJ3iq19Co/8LCmCLybASuhfAEvmPJ5sVicROGYUiOVrgPPj+38NRoYGHZ0mk84sOj2izBdXrZuq61MjHICV22Im75HrfyE7j/CDnLnwBNWtbxBnNhkwAMCwY9W+Q1t/ayF9rWHofeWKwxDh5yD/R9+upRx+gqJqqPLdzXW2hPdIzVGR6q96hWq9IgGHd3d6jVasIbO1R9qKJBlPH7bxfUH/u8VzJHAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;sqlserver_manager_network_protocol_ip_addresses_tab.png&quot;
+        title=&quot;sqlserver_manager_network_protocol_ip_addresses_tab.png&quot;
+        src=&quot;/static/a3de3680acc61d1878d0ea6fcae4fb0b/fcda8/sqlserver_manager_network_protocol_ip_addresses_tab.png&quot;
+        srcset=&quot;/static/a3de3680acc61d1878d0ea6fcae4fb0b/12f09/sqlserver_manager_network_protocol_ip_addresses_tab.png 148w,
+/static/a3de3680acc61d1878d0ea6fcae4fb0b/e4a3f/sqlserver_manager_network_protocol_ip_addresses_tab.png 295w,
+/static/a3de3680acc61d1878d0ea6fcae4fb0b/fcda8/sqlserver_manager_network_protocol_ip_addresses_tab.png 590w,
+/static/a3de3680acc61d1878d0ea6fcae4fb0b/e628c/sqlserver_manager_network_protocol_ip_addresses_tab.png 619w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;in my case, it is listening on default port &lt;code class=&quot;language-text&quot;&gt;1433&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Now we need to restart the SQL Server so the changes we made will take effect.&lt;/p&gt;
+&lt;p&gt;Go to &lt;code class=&quot;language-text&quot;&gt;SQL Server Configuration Manager (Local)&lt;/code&gt; &gt; &lt;code class=&quot;language-text&quot;&gt;SQL Server Services&lt;/code&gt;, right-click the &lt;code class=&quot;language-text&quot;&gt;SQL Server (MSSQLSERVER) service&lt;/code&gt; and press the &lt;code class=&quot;language-text&quot;&gt;Restart&lt;/code&gt; button to apply changes&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/0d9cb68e8649fe8c61369cfe84f844fd/f3abf/sqlserver_manager_restart_server.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 29.72972972972973%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAABP0lEQVQY02WRS0vEMBSF+///gSBuFAVx786FD2Twhbpw0NEZp5O+0iZtmnbGdtrPTFVQDPk43As3nHvihXOfNJPEcYxMM5b1kqZp6bv1H/jRvsMVX/rNpt+t2wFvKnyi0McXgjBWKKmwZU1Zr8jrBuPQ9gNVLlF2RWpWRNoizZLMoV0vrxrSonJ1jfc+e+Xh4ZHxeEwcRUgpKY3h6PyZnQufw+uIg1vF9uk7u1cJZy8Zl08LbmaK/ZFg6+SFvVHA9pnP3nWGJ0TAZDJBOIfTt+mg1lpSmVE6zQvjtBr4cFGYXJPJhNqWVFVNYUpMaVl3Pe26w+u6TSb/T9u2v6re3X7Q+7nm+G7OaGqwq+bPTO/e8jafkabpsGqSJCilncOKMIwGt5sNvnAZhyEiiHievCEzTRCELBZimC2KAq1zPgHjQ8Qcx0PDKwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;sqlserver_manager_restart_server.png&quot;
+        title=&quot;sqlserver_manager_restart_server.png&quot;
+        src=&quot;/static/0d9cb68e8649fe8c61369cfe84f844fd/fcda8/sqlserver_manager_restart_server.png&quot;
+        srcset=&quot;/static/0d9cb68e8649fe8c61369cfe84f844fd/12f09/sqlserver_manager_restart_server.png 148w,
+/static/0d9cb68e8649fe8c61369cfe84f844fd/e4a3f/sqlserver_manager_restart_server.png 295w,
+/static/0d9cb68e8649fe8c61369cfe84f844fd/fcda8/sqlserver_manager_restart_server.png 590w,
+/static/0d9cb68e8649fe8c61369cfe84f844fd/efc66/sqlserver_manager_restart_server.png 885w,
+/static/0d9cb68e8649fe8c61369cfe84f844fd/c83ae/sqlserver_manager_restart_server.png 1180w,
+/static/0d9cb68e8649fe8c61369cfe84f844fd/f3abf/sqlserver_manager_restart_server.png 1474w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Now we are ready to use the SQL Server from the docker container.&lt;/p&gt;
+&lt;h2&gt;But,&lt;/h2&gt;
+&lt;p&gt;There is one additional change we need to do to our connection string.&lt;/p&gt;
+&lt;p&gt;You must be using the following connection string to connect to your SQL Server&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Server=myServerAddress, myPortNumber;Database=myDataBase;User Id=myUsername;Password=myPassword;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;OR&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Data Source=(local);Initial Catalog=myDataBase;User ID=myUsername;Password=myPassword;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You have to change the database server address to your machine’s IP address but your machine has a changing IP address (or none if you have no network access).&lt;/p&gt;
+&lt;p&gt;Docker 18.03 onward helps us with this with special DNS name &lt;code class=&quot;language-text&quot;&gt;host.docker.internal&lt;/code&gt;, which resolves to the internal IP address used by the host machine.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This is for development purposes and will not work in a production outside of Docker Desktop for Windows or Docker Desktop for Mac.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;You can now change the connection string as follows&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Server=host.docker.internal, myPortNumber;Database=myDataBase;User Id=myUsername;Password=myPassword;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;OR&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Data Source=host.docker.internal;Initial Catalog=myDataBase;User ID=myUsername;Password=myPassword;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Deploy Azure web job on Docker]]></title><description><![CDATA[What is WebJobs SDK? The Azure WebJobs SDK is a framework that simplifies the task of writing background processing code that runs in Azure…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/azure-web-job-on-docker/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/azure-web-job-on-docker/</guid><pubDate>Fri, 16 Aug 2019 23:46:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
     &gt;
